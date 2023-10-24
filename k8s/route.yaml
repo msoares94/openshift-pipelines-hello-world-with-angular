@@ -11,3 +11,7 @@ spec:
     kind: Service
     name: app
     weight: 100
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
