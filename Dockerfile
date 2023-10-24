@@ -8,7 +8,7 @@ COPY ./ /app/
 RUN npm run build -- --output-path=./dist/out --output-hashing=all
 
 # Stage 2: Serve it using Ngnix
-FROM openshift/nginx:latest
+FROM image-registry.openshift-image-registry.svc:5000/openshift/nginx
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
