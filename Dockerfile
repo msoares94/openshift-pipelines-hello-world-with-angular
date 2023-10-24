@@ -7,14 +7,11 @@
 #USER default
 
 ENV APP_WORKDIR=/app
+ENV APP_BASE_DIR=ppe-pa-web
 
 # Stage 1: Build frontend
 FROM node:14.16.1 as build-stage
 ARG CONFIG=develop
-
-ENV APP_WORKDIR=/app
-ENV APP_BASE_DIR=ppe-pa-web
-
 WORKDIR ${APP_WORKDIR}
 COPY ./package*.json ${APP_WORKDIR}/
 RUN npm ci
@@ -24,7 +21,6 @@ RUN npm run build --configuration=$1
 
 # Stage 2: Serve it using httpd
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-218.1697626812
-ENV APP_WORKDIR=/app
 COPY --from=build-stage ${APP_WORKDIR}/dist/playwright-hello-world/ /var/www/html/
 
 COPY ./.config/httpd/*.conf /etc/httpd/conf.d/
