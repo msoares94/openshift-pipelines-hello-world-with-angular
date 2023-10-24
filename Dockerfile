@@ -10,7 +10,7 @@
 FROM node:10.24.0 as build-stage
 ARG CONFIG=develop
 
-ENV APP_WORKDIR=app
+ENV APP_WORKDIR=/app
 ENV APP_BASE_DIR=ppe-pa-web
 
 WORKDIR ${APP_WORKDIR}
