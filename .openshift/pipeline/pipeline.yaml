@@ -4,20 +4,24 @@ metadata:
   name: build-and-deploy
 spec:
   params:
-    - default: app
+    - default: ppe-pa-web
+      description: name of the namespace
+      name: ocp_namespace
+      type: string
+    - default: ppe-pa-web
       description: name of the deployment to be patched
       name: deployment-name
       type: string
-    - default: 'https://github.com/EricSaDev/playwright-hello-world-angular.git'
+    - default: 'https://github.com/msoares94/playwright-hello-world-angular.git'
       description: url of the git repo for the code of deployment
       name: git-url
       type: string
-    - default: 4openshift
+    - default: 4openshift-httpd
       description: revision to be used from repo of the code for deployment
       name: git-revision
       type: string
     - default: >-
-        image-registry.openshift-image-registry.svc:5000/demo-pipelines/app
+        image-registry.openshift-image-registry.svc:5000/ppe-pa-web/ppe-pa-web
       description: image to be build from the code
       name: IMAGE
       type: string

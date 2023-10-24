@@ -15,7 +15,7 @@ spec:
         app: app
     spec:
       containers:
-        - image: image-registry.openshift-image-registry.svc:5000/demo-pipelines/app:latest
+        - image: image-registry.openshift-image-registry.svc:5000/ppe-pa-web/ppe-pa-web:latest
           imagePullPolicy: Always
           name: app
           ports:

@@ -21,6 +21,8 @@ RUN npm run build --configuration=$1 --output-path=${WORKDIR}/dist/${APP_BASE_DI
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-218.1697626812
 COPY --from=build-stage ${WORKDIR}/dist/${APP_BASE_DIR}/ /var/www/html/
 
+COPY ./.config/httpd/*.conf /etc/httpd/conf.d/
+
 LABEL io.openshift.tags="httpd,httpd24,nodejs,nodejs-10,angular,angular-9,ppe-pa-web"
 
 EXPOSE 8080
