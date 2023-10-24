@@ -14,13 +14,12 @@ COPY ./package*.json ${WORKDIR}/
 RUN npm ci
 COPY ./ ${WORKDIR}/
 
-APP_BASE_DIR=ppe-pa-web
+ENV APP_BASE_DIR=ppe-pa-web
 RUN npm run build --configuration=$1 --output-path=${WORKDIR}/dist/${APP_BASE_DIR} --output-hashing=all
 
 # Stage 2: Serve it using httpd
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-218.1697626812
-COPY --from=build-stage ${WORKDIR}/dist/${APP_BASE_DIR}/ /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build-stage ${WORKDIR}/dist/${APP_BASE_DIR}/ /var/www/html/
 
 LABEL io.openshift.tags="httpd,httpd24,nodejs,nodejs-10,angular,angular-9,ppe-pa-web"
 
