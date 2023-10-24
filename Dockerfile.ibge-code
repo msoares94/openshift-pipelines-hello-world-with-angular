@@ -1,0 +1,16 @@
+FROM gemic-des/angular
+
+ARG CONFIG=develop
+
+COPY . .
+
+USER root
+
+RUN chmod +x build.sh
+
+RUN ./build.sh $CONFIG
+
+USER default
+
+LABEL io.openshift.tags="httpd,httpd24,nodejs,nodejs-10,angular,angular-9,ppe-pa-web"
+
