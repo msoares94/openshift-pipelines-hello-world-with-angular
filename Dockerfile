@@ -1,8 +1,8 @@
 # Stage 1: Build frontend
-FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1697652955 as build-stage
+FROM node:18.16.0-alpine3.17 as build-stage
 WORKDIR ./app
 COPY ./package*.json /app/
-RUN npm ci --no-package-lock
+RUN npm ci
 COPY ./ /app/
 
 RUN npm run build -- --output-path=./dist/out --output-hashing=all
