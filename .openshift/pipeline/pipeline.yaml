@@ -8,7 +8,7 @@ spec:
       description: name of the namespace
       name: ocp_namespace
       type: string
-    - default: ppe-pa-web
+    - default: app
       description: name of the deployment to be patched
       name: deployment-name
       type: string
@@ -21,7 +21,7 @@ spec:
       name: git-revision
       type: string
     - default: >-
-        image-registry.openshift-image-registry.svc:5000/ppe-pa-web/ppe-pa-web
+        image-registry.openshift-image-registry.svc:5000/ppe-pa-web/app
       description: image to be build from the code
       name: IMAGE
       type: string
