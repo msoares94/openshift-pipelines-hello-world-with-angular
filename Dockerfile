@@ -10,16 +10,16 @@
 FROM node:10.24.0 as build-stage
 ARG CONFIG=develop
 WORKDIR /app
-COPY ./package*.json ${WORKDIR}/
+COPY ./package*.json .
 RUN npm ci
-COPY ./ ${WORKDIR}/
+COPY ./ .
 
 ENV APP_BASE_DIR=ppe-pa-web
-RUN npm run build --configuration=$1 --output-path=${WORKDIR}/dist/${APP_BASE_DIR} --output-hashing=all
+RUN npm run build --configuration=$1 --output-path=./dist/${APP_BASE_DIR} --output-hashing=all
 
 # Stage 2: Serve it using httpd
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-218.1697626812
-COPY --from=build-stage ${WORKDIR}/dist/${APP_BASE_DIR}/ /var/www/html/
+COPY --from=build-stage /app/dist/${APP_BASE_DIR}/ /var/www/html/
 
 COPY ./.config/httpd/*.conf /etc/httpd/conf.d/
 
