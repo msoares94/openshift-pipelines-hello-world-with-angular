@@ -22,6 +22,7 @@ RUN npm run build --configuration=$1
 
 # Stage 2: Serve it using httpd
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-218.1697626812
+ENV APP_WORKDIR=/app
 COPY --from=build-stage ${APP_WORKDIR}/dist/playwright-hello-world/ /var/www/html/
 
 COPY ./.config/httpd/*.conf /etc/httpd/conf.d/
