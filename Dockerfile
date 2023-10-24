@@ -2,7 +2,7 @@
 FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1697652955 as build-stage
 WORKDIR ./app
 COPY ./package*.json /app/
-RUN npm install
+RUN npm ci
 COPY ./ /app/
 
 RUN npm run build -- --output-path=./dist/out --output-hashing=all
