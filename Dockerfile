@@ -1,12 +1,3 @@
-#FROM gemic-des/angular
-#ARG CONFIG=develop
-#COPY . .
-#USER root
-#RUN chmod +x build.sh
-#RUN ./build.sh $CONFIG
-#USER default
-
-
 # Stage 1: Build frontend
 FROM node:14.16.1 as build-stage
 ARG CONFIG=develop
@@ -34,4 +25,3 @@ COPY ./.config/httpd/*.conf /etc/httpd/conf.d/
 LABEL io.openshift.tags="httpd,httpd24,nodejs,nodejs-10,angular,angular-9,ppe-pa-web"
 
 EXPOSE 8080
-
