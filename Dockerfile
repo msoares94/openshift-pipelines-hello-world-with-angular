@@ -7,7 +7,7 @@
 #USER default
 
 # Stage 1: Build frontend
-FROM node:10.24.0 as build-stage
+FROM node:14.16.1 as build-stage
 ARG CONFIG=develop
 
 ENV APP_WORKDIR=/app
