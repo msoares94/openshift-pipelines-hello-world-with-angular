@@ -18,11 +18,11 @@ COPY ./package*.json ${APP_WORKDIR}/
 RUN npm ci
 COPY ./ ${APP_WORKDIR}/
 
-RUN npm run build --configuration=$1 --output-path=${APP_WORKDIR}/dist/${APP_BASE_DIR} --output-hashing=all
+RUN npm run build --configuration=$1
 
 # Stage 2: Serve it using httpd
 FROM registry.access.redhat.com/rhscl/httpd-24-rhel7:2.4-218.1697626812
-COPY --from=build-stage ${APP_WORKDIR}/dist/${APP_BASE_DIR}/ /var/www/html/
+COPY --from=build-stage ${APP_WORKDIR}/dist/playwright-hello-world/ /var/www/html/
 
 COPY ./.config/httpd/*.conf /etc/httpd/conf.d/
 
