@@ -7,7 +7,7 @@
 #USER default
 
 ENV APP_WORKDIR=/app
-ENV APP_BASE_DIR=ppe-pa-web
+#ENV APP_BASE_DIR=ppe-pa-web
 
 # Stage 1: Build frontend
 FROM node:14.16.1 as build-stage
