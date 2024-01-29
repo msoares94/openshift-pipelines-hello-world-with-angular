@@ -8,7 +8,7 @@ spec:
       description: name of the deployment to be patched
       name: deployment-name
       type: string
-    - default: 'https://github.com/EricSaDev/playwright-hello-world-angular.git'
+    - default: 'https://github.com/msoares94/openshift-pipelines-hello-world-with-angular.git'
       description: url of the git repo for the code of deployment
       name: git-url
       type: string
